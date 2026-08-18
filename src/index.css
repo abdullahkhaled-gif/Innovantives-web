@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.025em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.025em;
+  }
+}
+
+@layer components {
+  .bg-grid-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Subtle dark-mode grid, used behind the Home hero's dark section.
+     Previously injected via a runtime <style> tag inside Home.tsx —
+     moved here so it's parsed once by the browser's CSS engine and
+     cached like the rest of your stylesheet, instead of being
+     re-created as a JS string on every page load. */
+  .bg-grid-subtle {
+    background-size: 32px 32px;
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  }
+}
+
+@layer utilities {
+  /* Custom animations */
+  .animate-draw {
+    animation: draw 2s ease-out forwards;
+  }
+
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 100;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-500;
+  }
+
+  /* Custom focus styles */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  /* Smooth hover transitions */
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-neutral-200 p-6;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-lg hover:border-primary-300 transition-all duration-300;
+  }
+
+  /* Button variants */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg hover:from-primary-700 hover:to-primary-800 transition-all duration-300 transform hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-white border-2 border-neutral-300 text-neutral-700 font-semibold rounded-lg hover:border-primary-300 hover:text-primary-600 transition-all duration-300;
+  }
+
+  .btn-dark {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-neutral-900 text-white font-semibold rounded-lg hover:bg-neutral-800 transition-all duration-300;
+  }
+
+  /* Section spacing */
+  .section-padding {
+    @apply py-20 lg:py-28;
+  }
+
+  /* Container */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Gradient backgrounds */
+  .bg-gradient-primary {
+    @apply bg-gradient-to-br from-primary-600 to-primary-700;
+  }
+
+  .bg-gradient-dark {
+    @apply bg-gradient-to-br from-neutral-900 to-neutral-800;
+  }
+
+  /* Text styles */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Hide scrollbar */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Responsive text */
+  .text-responsive-sm {
+    @apply text-sm md:text-base;
+  }
+
+  .text-responsive-base {
+    @apply text-base md:text-lg;
+  }
+
+  .text-responsive-lg {
+    @apply text-lg md:text-xl;
+  }
+
+  /* Aspect ratios */
+  .aspect-hero {
+    aspect-ratio: 16 / 9;
+  }
+
+  .aspect-card {
+    aspect-ratio: 4 / 3;
+  }
+
+  .aspect-portrait {
+    aspect-ratio: 3 / 4;
+  }
+
+  /* Backdrop blur */
+  .backdrop-blur-custom {
+    backdrop-filter: blur(8px);
+  }
+
+  /* Custom shadows */
+  .shadow-custom {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .shadow-custom-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .shadow-custom-xl {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.4);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  width: max-content;
+  animation: marquee 60s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Slower variant used by the Home page testimonials carousel — same
+   underlying @keyframes marquee as above (identical 0% -> -50%
+   translateX motion), just a longer duration for that section. */
+.animate-marquee-slow {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee-slow:hover {
+  animation-play-state: paused;
+}
